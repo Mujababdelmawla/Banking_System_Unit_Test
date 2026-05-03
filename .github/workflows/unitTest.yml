@@ -18,11 +18,7 @@ jobs:
               with:
                 python-version: '3.12'
 
-            - name: install dependencies
-              run: |
-                python3 -m venv myenv
-                source myenv/bin/activate
-                pipenv install pytest 
+         
 
             - name: Run the tests 
               run: | 
