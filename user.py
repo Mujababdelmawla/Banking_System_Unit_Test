@@ -1,6 +1,17 @@
-class User:
-    def __init__(self, name):
-        self.name = name 
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
 
-    def get_profile(self):
-        return f"Name : {self.name}"
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise ValueError("Insufficient funds")
+        self.balance -= amount
+        return self.balance
+
+    def get_balance(self):
+        return self.balance
