@@ -1,0 +1,29 @@
+name: Run user profiles tests 
+
+on:
+    push:
+        branches: [main]
+
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name : checkout the repository
+              uses: actions/checkout@v5
+
+            - name: setup python 
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.12'
+
+            - name: install dependencies
+              run: |
+                python3 -m venv myenv
+                source myenv/bin/activate
+                pipenv install pytest 
+
+            - name: Run the tests 
+              run: | 
+                pytest -v 
