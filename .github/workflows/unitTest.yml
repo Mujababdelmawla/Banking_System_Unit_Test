@@ -1,25 +1,26 @@
 name: Run user profiles tests 
 
 on:
-    push:
-        branches: [main]
-
+  push:
+    branches: [main]
 
 jobs:
-    tests:
-        runs-on: ubuntu-latest
+  tests:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name : checkout the repository
-              uses: actions/checkout@v5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-            - name: setup python 
-              uses: actions/setup-python@v5
-              with:
-                python-version: '3.12'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-         
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
 
-            - name: Run the tests 
-              run: | 
-                pytest -v 
+      - name: Run tests
+        run: pytest -v
